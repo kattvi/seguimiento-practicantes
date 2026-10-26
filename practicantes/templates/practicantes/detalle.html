@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block titulo %}{{ practicante.usuario.nombre }}{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">{{ practicante.usuario.nombre }}</h1>
+  <span class="badge {% if practicante.estado == 'activo' %}text-bg-success{% elif practicante.estado == 'terminado' %}text-bg-secondary{% else %}text-bg-danger{% endif %} fs-6">
+    {{ practicante.get_estado_display }}
+  </span>
+</div>
+
+<div class="card shadow-sm mb-3">
+  <div class="card-body">
+    <dl class="row mb-0">
+      <dt class="col-sm-4">Correo electrónico</dt><dd class="col-sm-8">{{ practicante.usuario.correo }}</dd>
+      <dt class="col-sm-4">Matrícula</dt><dd class="col-sm-8">{{ practicante.matricula }}</dd>
+      <dt class="col-sm-4">Universidad</dt><dd class="col-sm-8">{{ practicante.universidad }}</dd>
+      <dt class="col-sm-4">Carrera</dt><dd class="col-sm-8">{{ practicante.carrera }}</dd>
+      <dt class="col-sm-4">Teléfono</dt><dd class="col-sm-8">{{ practicante.telefono|default:"—" }}</dd>
+      <dt class="col-sm-4">Supervisor</dt><dd class="col-sm-8">{{ practicante.supervisor }}</dd>
+      <dt class="col-sm-4">Inicio de la práctica</dt><dd class="col-sm-8">{{ practicante.fecha_inicio|date:"d/m/Y" }}</dd>
+      <dt class="col-sm-4">Término de la práctica</dt><dd class="col-sm-8">{{ practicante.fecha_termino|date:"d/m/Y" }}</dd>
+      <dt class="col-sm-4">Horas requeridas</dt><dd class="col-sm-8">{{ practicante.horas_requeridas }} h</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <a class="btn btn-primary" href="{% url 'practicantes:editar' practicante.pk %}">Editar</a>
+  {% if practicante.estado != 'baja' %}
+    <a class="btn btn-outline-danger" href="{% url 'practicantes:baja' practicante.pk %}">Dar de baja</a>
+  {% endif %}
+  <a class="btn btn-outline-secondary" href="{% url 'practicantes:lista' %}">Volver a la lista</a>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}{{ titulo }}{% endblock %}
+{% block contenido %}
+<h1 class="h3 mb-3">{{ titulo }}</h1>
+<form method="post" novalidate class="card card-body shadow-sm">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+  {% endif %}
+  <div class="row g-3">
+    {% for campo in form %}
+      <div class="col-md-6">
+        <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}</label>
+        {{ campo }}
+        {% if campo.help_text %}<div class="form-text">{{ campo.help_text }}</div>{% endif %}
+        {% for error in campo.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mt-4 d-flex gap-2">
+    <button type="submit" class="btn btn-primary">{{ boton }}</button>
+    <a class="btn btn-outline-secondary" href="{{ cancelar }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}
