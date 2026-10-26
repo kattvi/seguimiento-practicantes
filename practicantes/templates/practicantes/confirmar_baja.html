@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Dar de baja{% endblock %}
+{% block contenido %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="h4">Dar de baja a {{ practicante.usuario.nombre }}</h1>
+    <p>
+      El practicante pasará al estado <strong>Baja</strong> y su cuenta dejará de poder iniciar sesión.
+      Sus datos y su historial <strong>no se borran</strong>.
+    </p>
+    <form method="post" class="d-flex gap-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Confirmar baja</button>
+      <a class="btn btn-outline-secondary" href="{% url 'practicantes:detalle' practicante.pk %}">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block titulo %}Sin permiso{% endblock %}
+{% block contenido %}
+<div class="alert alert-warning">
+  <h1 class="h5">No tienes permiso para ver esta página.</h1>
+  <p class="mb-0">Esta sección es solo para administradores. <a href="{% url 'inicio' %}">Volver al inicio</a></p>
+</div>
+{% endblock %}
