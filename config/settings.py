@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cuentas",
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ else:
         }
     }
 
+AUTH_USER_MODEL = "cuentas.Usuario"
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -77,6 +79,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "inicio"
+LOGOUT_REDIRECT_URL = "login"
 
 # En las pruebas se usa un cifrado de contraseñas rápido (solo para que corran en segundos).
 if "test" in sys.argv:

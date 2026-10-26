@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="h4">Hola, {{ user.nombre }}</h1>
+    <p class="mb-0 text-muted">
+      Tu cuenta de practicante está activa. El registro de tus actividades y horas estará disponible
+      en el siguiente módulo del sistema.
+    </p>
+  </div>
+</div>
+{% endblock %}
